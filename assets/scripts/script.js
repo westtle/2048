@@ -199,46 +199,42 @@ function setBestScore() {
 };
 
 // Local Storage.
-const storageKey1 = "Game_Score";
-const storageKey2 = "Game_Progress";
+const game_score = "Game_Score";
+const game_progress = "Game_Progress";
 
 function saveGameData() {
-	const storageItem1 = JSON.stringify(score)
-	localStorage.setItem(storageKey1, storageItem1);
-
-	const storageItem2 = JSON.stringify(gameBoard)
-	localStorage.setItem(storageKey2, storageItem2);
+	localStorage.setItem(game_score, JSON.stringify(score));
+	localStorage.setItem(game_progress, JSON.stringify(gameBoard));
 };
 
 function loadGameData() {
-	const data1 = JSON.parse(localStorage.getItem(storageKey1));
-	const data2 = JSON.parse(localStorage.getItem(storageKey2));
+	const scoreFromStorage = JSON.parse(localStorage.getItem(game_score));
+	const progressFromStorage = JSON.parse(localStorage.getItem(game_progress));
 
-    if (data1 === null || data2 === null) {
+    if (scoreFromStorage == null || progressFromStorage == null) {
     	return;
     } else {
-    	if (data1.currentScore == 0) {
+    	if (scoreFromStorage.currentScore == 0) {
     		gameBoard = [
-    		[0, 0, 0, 0],
-			[0, 0, 0, 0],
-			[0, 0, 0, 0],
-			[0, 0, 0, 0]
+	    		[0, 0, 0, 0],
+				[0, 0, 0, 0],
+				[0, 0, 0, 0],
+				[0, 0, 0, 0]
 			];
     	} else {
-	    	gameBoard = data2;
+	    	gameBoard = progressFromStorage;
 	    	checkIfWin();
     	};
 
-    	score.currentScore = data1.currentScore;
-		score.bestScore = data1.bestScore;
+    	score.currentScore = scoreFromStorage.currentScore;
+		score.bestScore = scoreFromStorage.bestScore;
 
-		bestScoreHTML.innerText = `(${data1.bestScore})`;
-		currentScoreHTML.innerText = data1.currentScore;
+		bestScoreHTML.innerText = `(${scoreFromStorage.bestScore})`;
+		currentScoreHTML.innerText = scoreFromStorage.currentScore;
     };
 };
 
 // Swipe For Mobile (not my code).
-
 var xDown = null;                                                        
 var yDown = null;
 
