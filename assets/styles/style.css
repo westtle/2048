@@ -78,7 +78,7 @@ main {
 /* Reset Button */
 
 .__reset {
-	border: border: var(--border-shorthand);
+	border: var(--border-shorthand);
 	border-top: none;
 	width: 100%;
 }
@@ -92,8 +92,11 @@ main {
 	cursor: pointer;
 }
 
-.__how-to-play {
-	margin-top: 12px;
+/* Notice */
+
+.__notice {
+	margin-top: var(--unit-two);
+	padding: 0 var(--unit-one);
 	font-size: var(--font-size-second);
 }
 
