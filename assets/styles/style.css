@@ -42,6 +42,19 @@ main {
 	width: 100%;
 }
 
+/* Score */
+
+.__score {
+	border: var(--border-shorthand);
+	border-bottom: none;
+	padding: var(--unit-one) var(--unit-two);
+}
+
+.__score ._current {
+	margin: 0 var(--unit-one);
+	font-weight: bold;
+}
+
 /* Gameboard */
 
 .__gameboard {
@@ -58,19 +71,6 @@ main {
 	color: var(--tile-color);
 	height: 72.5px;
 	font-size: 18px;
-}
-
-/* Score */
-
-.__score {
-	border: var(--border-shorthand);
-	border-bottom: none;
-	padding: var(--unit-one) var(--unit-two);
-}
-
-.__score ._current {
-	margin: 0 var(--unit-one);
-	font-weight: bold;
 }
 
 /* Reset Button */
