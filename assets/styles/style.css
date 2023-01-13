@@ -75,8 +75,10 @@ main {
 	font-weight: bold;
 }
 
+/* Reset Button */
+
 .__reset {
-	border: 1px solid var(--border-main);
+	border: border: var(--border-shorthand);
 	border-top: none;
 	width: 100%;
 }
@@ -85,14 +87,9 @@ main {
 	background: none;
 	border: none;
 	width: 100%;
-	padding: 7px 12px;
+	padding: var(--unit-one) var(--unit-two);
 	font-size: var(--font-size-button);
 	cursor: pointer;
-}
-
-.__reset button:hover {
-	background: var(--button-hover-backround);
-	color: var(--button-hover-color);
 }
 
 .__how-to-play {
@@ -101,6 +98,14 @@ main {
 }
 
 /* Media Query */
+
+@media (hover: hover) {
+	.__reset button:hover {
+		color: var(--button-hover-color);
+		background: var(--button-hover-backround);
+	}
+}
+
 
 /* 30% decrease (mostly) */
 /*@media (max-width: 333px) {
