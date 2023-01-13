@@ -190,4 +190,10 @@ main {
 		font-size: calc(1rem - 10%);
 	}
 }
+
+@media (max-width: 17.5rem) { /* 280px */
+	html {
+		font-size: calc(1rem - 20%);
+	}
+}
 /* -------- */
