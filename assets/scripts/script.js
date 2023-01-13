@@ -153,7 +153,7 @@ function tileUpdate() { // Update tile based on gameBoard array (and also the st
 function checkIfWin() {
 	for (let i = 0; i < gameBoard.length; i++) {
 		if (gameBoard[i].includes(2048)) {
-			document.querySelector("h3").innerText = "You win!";
+			// document.querySelector("h3").innerText = "You win!";
 			return;
 		};
 	};
@@ -172,8 +172,6 @@ function resetGame() {
 		[0, 0, 0, 0],
 		[0, 0, 0, 0]
 	];
-
-	document.querySelector("h3").innerText = "";
 
 	score.currentScore = 0;
 	displayScore();
