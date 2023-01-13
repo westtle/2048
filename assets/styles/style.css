@@ -36,7 +36,7 @@ main {
 	justify-content: center;
 	align-items: center;
 	height: calc(100% - 9vh);
-	max-width: 298px;
+	max-width: 18.625rem;
 	margin: 4.5vh auto;
 	text-align: center;
 }
@@ -63,7 +63,7 @@ main {
 .__gameboard {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-gap: 2px;
+	grid-gap: 0.125rem;
 	border: var(--border-shorthand);
 }
 
@@ -72,8 +72,8 @@ main {
 	justify-content: center;
 	align-items: center;
 	color: var(--tile-color);
-	height: 72.5px;
-	font-size: 18px;
+	height: 4.531rem;
+	font-size: 1.125rem;
 }
 
 /* Reset Button */
