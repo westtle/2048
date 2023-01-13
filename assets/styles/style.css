@@ -103,10 +103,6 @@ main {
 	font-size: var(--font-size-second);
 }
 
-h3 {
-	margin-top: 12px;
-}
-
 /* Media Query */
 
 /* 30% decrease (mostly) */
