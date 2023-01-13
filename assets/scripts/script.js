@@ -1,3 +1,8 @@
+let score = {
+	currentScore: 0,
+	bestScore: 0
+};
+
 let gameBoard = [
 	[0, 0, 0, 0],
 	[0, 0, 0, 0],
@@ -5,7 +10,12 @@ let gameBoard = [
 	[0, 0, 0, 0]
 ];
 
-// Slide Function.
+// HTML.
+const gameBoardHTML = document.querySelector(".__gameboard");
+const currentScoreHTML = document.querySelector("._current");
+const bestScoreHTML = document.querySelector("._best");
+
+const resetButton = document.querySelector(".__reset button");
 
 function slide(rowOrCol, direction) {
 	let filtered; // aka removed the 0.
@@ -80,34 +90,7 @@ function slide(rowOrCol, direction) {
 	};
 };
 
-document.addEventListener('keyup', (e) => {
-	if (e.code == "ArrowLeft" || e.code == "KeyA") {
-		gameBoard = [slide(0, "left"), slide(1, "left"), slide(2, "left"), slide(3, "left")];
-		setTwoOrFour();
-		saveGameData();
-		checkIfWin();
-	} else if (e.code == "ArrowRight" || e.code == "KeyD") {
-		gameBoard = [slide(0, "right"), slide(1, "right"), slide(2, "right"), slide(3, "right")];
-		setTwoOrFour();
-		saveGameData();
-		checkIfWin();
-	} else if (e.code == "ArrowUp" || e.code == "KeyW") {
-		slide(0, "up"); slide(1, "up"); slide(2, "up"); slide(3, "up");
-		setTwoOrFour();
-		saveGameData();
-		checkIfWin();
-	} else if (e.code == "ArrowDown" || e.code == "KeyS") {
-		slide(0, "down"); slide(1, "down"); slide(2, "down"); slide(3, "down");
-		setTwoOrFour();
-		saveGameData();
-		checkIfWin();
-	};
-	tileUpdate();
-});
-
-// Extra Function. //
-
-function setTwoOrFour() {
+function spawnTwoOrFour() {
 	let chance = Math.floor(Math.random() * 100);
 
 	let randomRow = Math.floor(Math.random() * 4);
@@ -124,7 +107,7 @@ function setTwoOrFour() {
 			
 				gameBoard[randomRow][randomColumn] = 4;
 			} else {
-				setTwoOrFour();
+				spawnTwoOrFour();
 			};
 		} else {
 			if (gameBoard[randomRow][randomColumn] === 0) {
@@ -135,7 +118,7 @@ function setTwoOrFour() {
 			
 				gameBoard[randomRow][randomColumn] = 2;
 			} else {
-				setTwoOrFour();
+				spawnTwoOrFour();
 			};
 
 			tileUpdate();
@@ -184,10 +167,10 @@ function isGameBoardFull() {
 
 function resetGame() {
 	gameBoard = [
-	[0, 0, 0, 0],
-	[0, 0, 0, 0],
-	[0, 0, 0, 0],
-	[0, 0, 0, 0]
+		[0, 0, 0, 0],
+		[0, 0, 0, 0],
+		[0, 0, 0, 0],
+		[0, 0, 0, 0]
 	];
 
 	document.querySelector("h3").innerText = "";
@@ -195,36 +178,22 @@ function resetGame() {
 	score.currentScore = 0;
 	displayScore();
 
-	setTwoOrFour();
-	setTwoOrFour();
+	spawnTwoOrFour();
+	spawnTwoOrFour();
 
 	tileUpdate();
 	saveGameData();
 };
 
-let resetButton = document.querySelector(".__reset button");
-resetButton.addEventListener("click", resetGame);
-
-// Score System. //
-
-let score = {
-	currentScore: 0,
-	bestScore: 0
-};
-
-// HTML.
-let currentScoreDiv = document.querySelector("._current");
-let bestScoreDiv = document.querySelector("._best");
-
 function displayScore() {
-	currentScoreDiv.innerText = score.currentScore;
+	currentScoreHTML.innerText = score.currentScore;
 	setBestScore();
 };
 
 function setBestScore() {
 	if (score.currentScore > score.bestScore) {
 		score.bestScore = score.currentScore;
-		bestScoreDiv.innerText = `(${score.bestScore})`;
+		bestScoreHTML.innerText = `(${score.bestScore})`;
 	};
 };
 
@@ -262,29 +231,12 @@ function loadGameData() {
     	score.currentScore = data1.currentScore;
 		score.bestScore = data1.bestScore;
 
-		bestScoreDiv.innerText = `(${data1.bestScore})`;
-		currentScoreDiv.innerText = data1.currentScore;
+		bestScoreHTML.innerText = `(${data1.bestScore})`;
+		currentScoreHTML.innerText = data1.currentScore;
     };
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-	loadGameData();
-	if (score.currentScore == 0) {
-		setTwoOrFour();
-		setTwoOrFour();
-	};
-	tileUpdate();
-});
-
-
-// Swipe For Mobile. //
-
-// Not my code.
-
-let gameBoardDiv = document.querySelector(".__gameboard");
-
-gameBoardDiv.addEventListener('touchstart', handleTouchStart, false);        
-gameBoardDiv.addEventListener('touchmove', handleTouchMove, false);
+// Swipe For Mobile (not my code).
 
 var xDown = null;                                                        
 var yDown = null;
@@ -300,7 +252,7 @@ function handleTouchStart(evt) {
 };                                                
                                                                          
 function handleTouchMove(evt) {
-    if ( ! xDown || ! yDown ) {
+    if (!xDown || !yDown) {
         return;
     }
 
@@ -310,33 +262,76 @@ function handleTouchMove(evt) {
     var xDiff = xDown - xUp;
     var yDiff = yDown - yUp;
                                                                          
-    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
-        if ( xDiff > 0 ) {
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        if (xDiff > 0) {
             gameBoard = [slide(0, "left"), slide(1, "left"), slide(2, "left"), slide(3, "left")];
-			setTwoOrFour();
+			spawnTwoOrFour();
 			saveGameData();
 			checkIfWin();
         } else {
             gameBoard = [slide(0, "right"), slide(1, "right"), slide(2, "right"), slide(3, "right")];
-			setTwoOrFour();
+			spawnTwoOrFour();
 			saveGameData();
 			checkIfWin();
         };                      
     } else {
-        if ( yDiff > 0 ) {
+        if (yDiff > 0) {
             slide(0, "up"); slide(1, "up"); slide(2, "up"); slide(3, "up");
-			setTwoOrFour();
+			spawnTwoOrFour();
 			saveGameData();
 			checkIfWin();
         } else { 
             slide(0, "down"); slide(1, "down"); slide(2, "down"); slide(3, "down");
-			setTwoOrFour();
+			spawnTwoOrFour();
 			saveGameData();
 			checkIfWin();
         };
+        
         tileUpdate();                                                              
     };
 
     xDown = null;
     yDown = null;                                             
 };
+
+gameBoardHTML.addEventListener('touchstart', handleTouchStart, false);        
+gameBoardHTML.addEventListener('touchmove', handleTouchMove, false);
+
+resetButton.addEventListener("click", resetGame);
+
+document.addEventListener('keyup', (e) => {
+	if (e.code == "ArrowLeft" || e.code == "KeyA") {
+		gameBoard = [slide(0, "left"), slide(1, "left"), slide(2, "left"), slide(3, "left")];
+		spawnTwoOrFour();
+		saveGameData();
+		checkIfWin();
+	} else if (e.code == "ArrowRight" || e.code == "KeyD") {
+		gameBoard = [slide(0, "right"), slide(1, "right"), slide(2, "right"), slide(3, "right")];
+		spawnTwoOrFour();
+		saveGameData();
+		checkIfWin();
+	} else if (e.code == "ArrowUp" || e.code == "KeyW") {
+		slide(0, "up"); slide(1, "up"); slide(2, "up"); slide(3, "up");
+		spawnTwoOrFour();
+		saveGameData();
+		checkIfWin();
+	} else if (e.code == "ArrowDown" || e.code == "KeyS") {
+		slide(0, "down"); slide(1, "down"); slide(2, "down"); slide(3, "down");
+		spawnTwoOrFour();
+		saveGameData();
+		checkIfWin();
+	};
+
+	tileUpdate();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+	loadGameData();
+
+	if (score.currentScore == 0) {
+		spawnTwoOrFour();
+		spawnTwoOrFour();
+	};
+
+	tileUpdate();
+});
