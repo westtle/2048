@@ -53,9 +53,9 @@ function slide(rowOrCol, direction) {
 			filtered[i+1] = 0;
 			score.currentScore += filtered[i];
 			
-			tileToAnimate.classList.remove("pop-up");
+			tileToAnimate.classList.remove("pop-up_");
 			setTimeout(() => {
-				tileToAnimate.classList.add("pop-up");
+				tileToAnimate.classList.add("pop-up_");
 			}, 200)
 
 			displayScore();
@@ -104,7 +104,7 @@ function spawnTwoOrFour() {
 				let randomTile = document.getElementById(randomId);
 				randomTile.textContent = "4";
 
-				randomTile.classList.remove("pop-up");
+				randomTile.classList.remove("pop-up_");
 			
 				gameBoard[randomRow][randomColumn] = 4;
 			} else {
@@ -115,7 +115,7 @@ function spawnTwoOrFour() {
 				let randomTile = document.getElementById(randomId);
 				randomTile.textContent = "2";
 
-				randomTile.classList.remove("pop-up");
+				randomTile.classList.remove("pop-up_");
 			
 				gameBoard[randomRow][randomColumn] = 2;
 			} else {
@@ -138,11 +138,11 @@ function tileUpdate() { // Update tile based on gameBoard array (and also the st
 
 			tile.classList.value = `_tile t${tileNum}`;
 			if (parseInt(tileNum) >= 8192) {
-				tile.classList.value = `_tile t8192-or-more`
+				tile.classList.value = `_tile t8192-or-above`
 			};
 
-			tile.classList.remove("pop-up");
-			tile.classList.add("pop-up");
+			tile.classList.remove("pop-up_");
+			tile.classList.add("pop-up_");
 
 			if (tileNum == 0) {
 				tile.innerText = "";
