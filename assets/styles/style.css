@@ -13,6 +13,9 @@
 
 	--unit-one: 0.438rem; /* 7px */
 	--unit-two: 0.75rem; /* 12px */
+
+	--tile-color: white;
+	--tile-color-secondary: rgba(0, 0, 0, 0.7);
 }
 
 *, *::before, *::after {
