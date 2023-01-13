@@ -81,7 +81,7 @@ function slide(rowOrCol, direction) {
 		for (let i = 0; i < filtered3.length; i++) {
 			gameBoard[i][rowOrCol] = filtered3[i];
 		};
-		
+
 	} else if (direction == "down") {
 		let filtered3 = filtered2.splice(0, 4).reverse();
 
@@ -154,7 +154,7 @@ function tileUpdate() { // Update tile based on gameBoard array (and also the st
 function checkIfWin() {
 	gameBoard.forEach((board, index) => {
 		if (gameBoard[index].includes(2048)) {
-			// document.querySelector("h3").innerText = "You win!";
+			document.querySelector("._win").style.display = "inline-block";
 			return;
 		};
 	});
@@ -173,6 +173,8 @@ function resetGame() {
 		[0, 0, 0, 0],
 		[0, 0, 0, 0]
 	];
+
+	document.querySelector("._win").style.display = "none";
 
 	score.currentScore = 0;
 	displayScore();

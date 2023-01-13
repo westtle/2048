@@ -58,6 +58,10 @@ main {
 	font-weight: bold;
 }
 
+._win {
+	display: none;
+}
+
 /* Gameboard */
 
 .__gameboard {
