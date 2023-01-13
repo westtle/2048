@@ -101,46 +101,6 @@ main {
 	font-size: var(--font-size-second);
 }
 
-/* Media Query */
-
-@media (hover: hover) {
-	.__reset button:hover {
-		color: var(--button-hover-color);
-		background: var(--button-hover-backround);
-	}
-}
-
-
-/* 30% decrease (mostly) */
-/*@media (max-width: 333px) {
-	* {
-		--font-size-main: 10.15px;
-	}
-
-	#_2048 {
-		width: 228px;
-	}
-
-	.__gameboard ._tile {
-		width: 55px;
-		height: 55px;
-		font-size: 12.6px;
-	}
-
-	.__score {
-		height: 23.8px;
-	}
-
-	.__reset button {
-		--font-size-button: 8.6px;
-	}
-
-	.__how-to-play {
-		margin-top: 7px;
-		--font-size-second: 8.1px;
-	}
-}*/
-
 /* Animation */
 
 .pop-up {
@@ -214,3 +174,20 @@ main {
 .t8192-or-more {
     background-color: rgba(0, 0, 0, 0.74);
 }
+
+/* Media Query */
+
+@media (hover: hover) {
+	.__reset button:hover {
+		color: var(--button-hover-color);
+		background: var(--button-hover-backround);
+	}
+}
+
+/* Font Size */
+@media (max-width: 30rem) { /* 480px */
+	html {
+		font-size: calc(1rem - 10%);
+	}
+}
+/* -------- */
