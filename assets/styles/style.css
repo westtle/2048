@@ -62,19 +62,16 @@ main {
 	font-size: 18px;
 }
 
+/* Score */
+
 .__score {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border: 1px solid var(--border-main);
+	border: var(--border-shorthand);
 	border-bottom: none;
-	width: 100%;
-	height: 34px;
-	margin: 0 auto 0 auto;
+	padding: var(--unit-one) var(--unit-two);
 }
 
 .__score ._current {
-	margin: 0 12px;
+	margin: 0 var(--unit-one);
 	font-weight: bold;
 }
 
