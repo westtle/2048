@@ -53,7 +53,7 @@ main {
 	padding: var(--unit-one) var(--unit-two);
 }
 
-.__score ._current {
+._current {
 	margin: 0 var(--unit-one);
 	font-weight: bold;
 }
@@ -192,12 +192,6 @@ main {
 @media (max-width: 30rem) { /* 480px */
 	html {
 		font-size: calc(1rem - 10%);
-	}
-}
-
-@media (max-width: 17.5rem) { /* 280px */
-	html {
-		font-size: calc(1rem - 20%);
 	}
 }
 /* -------- */

@@ -99,31 +99,24 @@ function spawnTwoOrFour() {
 	let randomId = `${randomRow}-${randomColumn}`;
 
 	if (!isGameBoardFull()) {
-		if (chance >= 80) {
-			if (gameBoard[randomRow][randomColumn] === 0) {
-				let randomTile = document.getElementById(randomId);
-				randomTile.textContent = "4";
+		if (gameBoard[randomRow][randomColumn] == 0) {
+			let randomTile = document.getElementById(randomId);
 
-				randomTile.classList.remove("pop-up_");
-			
+			randomTile.classList.remove("pop-up_");
+
+			if (chance >= 80) {
+				randomTile.textContent = "4";
 				gameBoard[randomRow][randomColumn] = 4;
 			} else {
-				spawnTwoOrFour();
-			};
-		} else {
-			if (gameBoard[randomRow][randomColumn] === 0) {
-				let randomTile = document.getElementById(randomId);
 				randomTile.textContent = "2";
-
-				randomTile.classList.remove("pop-up_");
-			
 				gameBoard[randomRow][randomColumn] = 2;
-			} else {
-				spawnTwoOrFour();
 			};
 
-			tileUpdate();
+		} else {
+			spawnTwoOrFour();
 		};
+
+		tileUpdate();
 	} else {
 		return;
 	};
@@ -148,21 +141,6 @@ function tileUpdate() { // Update tile based on gameBoard array (and also the st
 				tile.innerText = "";
 			};
 		};
-	};
-};
-
-function checkIfWin() {
-	gameBoard.forEach((board, index) => {
-		if (gameBoard[index].includes(2048)) {
-			document.querySelector("._win").style.display = "inline-block";
-			return;
-		};
-	});
-};
-
-function isGameBoardFull() {
-	if (!gameBoard[0].includes(0) && !gameBoard[1].includes(0) && !gameBoard[2].includes(0) && !gameBoard[3].includes(0)) {
-		return true;
 	};
 };
 
@@ -195,6 +173,21 @@ function setBestScore() {
 	if (score.currentScore > score.bestScore) {
 		score.bestScore = score.currentScore;
 		bestScoreHTML.innerText = `(${score.bestScore})`;
+	};
+};
+
+function checkIfWin() {
+	gameBoard.forEach((board, index) => {
+		if (gameBoard[index].includes(2048)) {
+			document.querySelector("._win").style.display = "inline-block";
+			return;
+		};
+	});
+};
+
+function isGameBoardFull() {
+	if (!gameBoard[0].includes(0) && !gameBoard[1].includes(0) && !gameBoard[2].includes(0) && !gameBoard[3].includes(0)) {
+		return true;
 	};
 };
 
