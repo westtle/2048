@@ -284,8 +284,8 @@ function handleTouchMove(evt) {
     yDown = null;                                             
 };
 
-gameBoardHTML.addEventListener('touchstart', handleTouchStart, false);        
-gameBoardHTML.addEventListener('touchmove', handleTouchMove, false);
+gameBoardHTML.addEventListener('touchstart', handleTouchStart, {passive: true});        
+gameBoardHTML.addEventListener('touchmove', handleTouchMove, {passive: true});
 
 resetButton.addEventListener("click", resetGame);
 
