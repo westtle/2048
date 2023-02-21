@@ -98,7 +98,7 @@ main {
 
 /* Notice / Link */
 
-.__notice {
+#notice {
 	margin-top: 0.625rem;
 	padding: 0 var(--unit-one);
 	font-size: var(--font-size-second);
